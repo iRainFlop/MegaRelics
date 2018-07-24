@@ -72,6 +72,7 @@ $drops = [$item1, $item2];
 		  TF::BOLD . TF::RED . $name . TF::RESET . TF::GRAY . " you have founded a",
 		  TF::BOLD . "Common Relic" . TF::RESET . TF::GRAY . "!" . " To obtain place the" . TF::BOLD . " Common Relic",
 		  TF::RESET . TF::GRAY . "down."
+			  ]);
           
 
 
