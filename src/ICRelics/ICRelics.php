@@ -74,13 +74,13 @@ $drops = [$item1, $item2];
 		  TF::RESET . TF::GRAY . "down."
 			  ]);
           
-
+$drops = [$chest, $item2];
 
 
 if($event->getBlock()->getId() === 1) {
 if(mt_rand(1, 30) === 15) {
-$player->sendMessage("testtcefvrgf");
-$event->setDrops($chest);
+$player->sendMessage("HI");
+$event->setDrops($drops);
 
 }
 
