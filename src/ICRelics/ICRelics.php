@@ -10,7 +10,6 @@ use pocketmine\utils\TextFormat as TF;
 use pocketmine\inventory\PlayerInventory;
 use pocketmine\Server;
 use pocketmine\Player;
-use pocketmine\item\Item;
 use pocketmine\item\Armor;
 use pocketmine\level\sound\PopSound;
 use pocketmine\event\player\PlayerInteractEvent;
@@ -20,24 +19,61 @@ use PiggyCustomEnchants\Main as CEMain;
 use PiggyCustomEnchants\CustomEnchants\CustomEnchants;
 use pocketmine\player\Inventory;
 
+
+#items
+use pocketmine\item\{Item, ItemFactory};
+
+#nbt
+use pocketmine\nbt\{NBT, tag\CompoundTag, tag\IntTag, tag\ListTag, tag\StringTag};
+
+
+#tile
+use pocketmine\tile\{Tile, Chest};
+
+
+#math
+use pocketmine\math\Vector3;
+
+#inventory
+use pocketmine\inventory\ChestInventory;
+
 class ICRelics extends PluginBase implements Listener { 
 
 public function onEnable() {
 		
 		$this->getLogger()->info("Relics Enabled");
-		 
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		
 	}
 
 public function onBreak(BlockBreakEvent $event) {
 
 $player = $event->getPlayer();
+$name = $player->getName();
 $chance = mt_rand(1, 30);
 $drops = $event->getItem();
 $item1 = Item::get(54, 0, 1);
-$item2 = Item::get(55, 0, 10);
+$item2 = Item::get(0, 0, 10);
 $drops = [$item1, $item2];
-$drops->setCustomName("Hi");
+
+
+
+  $nbt = new CompoundTag("BlockEntityTag", [
+            new ListTag("Items", [Item::get(
+            Item::GRASS, 0, 2)->nbtSerialize(0),
+            Item::get(Item::DIAMOND, 0, 4)->nbtSerialize(3)])
+            ]);
+
+          $chest = ItemFactory::get(Block::CHEST, 0, 1);
+          $chest->setNamedTagEntry($nbt);
+		  $chest->setCustomName(TF::BOLD . TF::GRAY . "Common Relic");
+		  $chest->setLore([
+		  "",
+		  TF::BOLD . TF::RED . $name . TF::RESET . TF::GRAY . " you have founded a",
+		  TF::BOLD . "Common Relic" . TF::RESET . TF::GRAY . "!" . " To obtain place the" . TF::BOLD . " Common Relic",
+		  TF::RESET . TF::GRAY . "down."
+          
+$drops = [$chest, $item2];
 
 
 if($event->getBlock()->getId() === 1) {
@@ -46,6 +82,8 @@ $player->sendMessage("HI");
 $event->setDrops($drops);
 
 }
+
+
 }
 }
 }
