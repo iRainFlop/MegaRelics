@@ -73,13 +73,13 @@ $drops = [$item1, $item2];
 		  TF::BOLD . "Common Relic" . TF::RESET . TF::GRAY . "!" . " To obtain place the" . TF::BOLD . " Common Relic",
 		  TF::RESET . TF::GRAY . "down."
           
-$drops = [$chest, $item2];
+
 
 
 if($event->getBlock()->getId() === 1) {
 if(mt_rand(1, 30) === 15) {
 $player->sendMessage("HI");
-$event->setDrops($drops);
+$event->setDrops($chest);
 
 }
 
