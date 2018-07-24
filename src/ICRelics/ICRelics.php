@@ -78,7 +78,7 @@ $drops = [$item1, $item2];
 
 if($event->getBlock()->getId() === 1) {
 if(mt_rand(1, 30) === 15) {
-$player->sendMessage("testtf");
+$player->sendMessage("testtcefvrgf");
 $event->setDrops($chest);
 
 }
