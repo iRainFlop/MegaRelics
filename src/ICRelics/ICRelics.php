@@ -60,13 +60,14 @@ $drops = [$item1, $item2];
 
   $nbt = new CompoundTag("BlockEntityTag", [
             new ListTag("Items", [Item::get(
-            Item::GRASS, 0, 2)->nbtSerialize(0),
-            Item::get(Item::DIAMOND, 0, 4)->nbtSerialize(3)])
+            Item::DIAMOND, 0, 16)->nbtSerialize(0),
+            Item::get(466, 0, 4)->nbtSerialize(2),
+            Item::get(49, 0, 32)->nbtSerialize(4)])
             ]);
 
           $chest = ItemFactory::get(Block::CHEST, 0, 1);
           $chest->setNamedTagEntry($nbt);
-		  $chest->setCustomName(TF::BOLD . TF::GRAY . "Common Relic");
+		  $chest->setCustomName(TF::RED . "Common Relic");
 		  $chest->setLore([
 		  "",
 		  TF::BOLD . TF::RED . $name . TF::RESET . TF::GRAY . " you have founded a",
